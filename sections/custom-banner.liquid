@@ -1,61 +1,54 @@
 {{ 'custom-banner.css' | asset_url | stylesheet_tag }}
 
-<div class="custom-banner-section color-{{ section.settings.color_scheme }}">
-  <div class="custom-banner-wrapper">
-    <div class="custom-banner-content">
-      {% if section.settings.top_label != blank %}
-        <div class="custom-banner-label">
-          {{ section.settings.top_label }}
-        </div>
-      {% endif %}
+{%- comment -%}
+  Custom Banner Section - Pixel Perfect Figma Implementation
+  - Top header bar with logo, tagline, and CTA
+  - Hero section with heading, description, and button
+  - Bottom tagline
+  - Fully responsive and editable via Theme Customizer
+{%- endcomment -%}
 
-      {% if section.settings.heading != blank %}
-        <h1 class="custom-banner-heading">
-          {{ section.settings.heading }}
-        </h1>
-      {% endif %}
-
-      {% if section.settings.description != blank %}
-        <div class="custom-banner-description">
-          {{ section.settings.description }}
-        </div>
-      {% endif %}
-
-      <div class="custom-banner-buttons">
-        {% if section.settings.button_1_text != blank %}
-          <a 
-            href="{{ section.settings.button_1_link }}" 
-            class="custom-banner-button custom-banner-button--primary"
-          >
-            {{ section.settings.button_1_text }}
-          </a>
-        {% endif %}
-
-        {% if section.settings.button_2_text != blank %}
-          <a 
-            href="{{ section.settings.button_2_link }}" 
-            class="custom-banner-button custom-banner-button--secondary"
-          >
-            {{ section.settings.button_2_text }}
-            <svg class="button-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        {% endif %}
+<section class="custom-banner" aria-label="Gift Guide Banner">
+  <!-- Top Header Bar -->
+  <header class="custom-banner__header">
+    <div class="custom-banner__header-inner">
+      <div class="custom-banner__logo">
+        {{ section.settings.top_label | default: 'TISSO VISON' }}
       </div>
+      <p class="custom-banner__tagline">
+        {{ section.settings.tagline | default: 'Find the ideal gift for your loved ones.' }}
+      </p>
+      <a href="{{ section.settings.header_button_link | default: '#product-grid' }}" class="custom-banner__header-cta">
+        {{ section.settings.header_button_text | default: 'CHOOSE GIFT' }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
+  </header>
 
+  <!-- Hero Section -->
+  <div class="custom-banner__hero">
     {% if section.settings.background_image != blank %}
-      <div class="custom-banner-background">
-        {{
-          section.settings.background_image
-          | image_url: width: 1920
-          | image_tag: loading: 'lazy', alt: section.settings.background_image.alt
-        }}
+      <div class="custom-banner__bg">
+        {{ section.settings.background_image | image_url: width: 1920 | image_tag: loading: 'eager', class: 'custom-banner__bg-img' }}
       </div>
     {% endif %}
+    
+    <div class="custom-banner__content">
+      <h1 class="custom-banner__heading">{{ section.settings.heading | default: 'The Gift Guide' }}</h1>
+      <p class="custom-banner__description">{{ section.settings.description | default: 'Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.' }}</p>
+      <a href="{{ section.settings.button_1_link | default: '#product-grid' }}" class="custom-banner__cta">
+        {{ section.settings.button_1_text | default: 'SHOP NOW' }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <p class="custom-banner__bottom-text">{{ section.settings.bottom_text | default: 'SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 4X.' }}</p>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
@@ -63,46 +56,35 @@
   "class": "section-custom-banner",
   "settings": [
     {
+      "type": "header",
+      "content": "Header Bar"
+    },
+    {
       "type": "text",
       "id": "top_label",
-      "label": "Top Label",
+      "label": "Logo Text",
       "default": "TISSO VISON"
     },
     {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Heading",
-      "default": "The Gift Guide"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones."
+      "type": "text",
+      "id": "tagline",
+      "label": "Header Tagline",
+      "default": "Find the ideal gift for your loved ones."
     },
     {
       "type": "text",
-      "id": "button_1_text",
-      "label": "Button 1 Text",
-      "default": "SHOP NOW"
-    },
-    {
-      "type": "url",
-      "id": "button_1_link",
-      "label": "Button 1 Link",
-      "default": "/collections/all"
-    },
-    {
-      "type": "text",
-      "id": "button_2_text",
-      "label": "Button 2 Text",
+      "id": "header_button_text",
+      "label": "Header Button Text",
       "default": "CHOOSE GIFT"
     },
     {
       "type": "url",
-      "id": "button_2_link",
-      "label": "Button 2 Link",
-      "default": "/collections/all"
+      "id": "header_button_link",
+      "label": "Header Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Hero Section"
     },
     {
       "type": "image_picker",
@@ -110,24 +92,33 @@
       "label": "Background Image"
     },
     {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "options": [
-        {
-          "value": "scheme-1",
-          "label": "Scheme 1"
-        },
-        {
-          "value": "scheme-2",
-          "label": "Scheme 2"
-        },
-        {
-          "value": "scheme-3",
-          "label": "Scheme 3"
-        }
-      ],
-      "default": "scheme-1"
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "CTA Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 4X."
     }
   ],
   "presets": [

@@ -1,10 +1,10 @@
 /* ============================================
-   Custom Product Grid Styles
+   Custom Product Grid - Pixel Perfect Figma Design
    ============================================ */
 
 .custom-product-grid-section {
   width: 100%;
-  padding: 60px 20px;
+  padding: 80px 24px;
   background: #ffffff;
 }
 
@@ -15,8 +15,9 @@
 
 .custom-grid-title {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 400;
+  font-style: italic;
   text-align: center;
   color: #1a1a1a;
   margin-bottom: 48px;
@@ -25,8 +26,8 @@
 
 .custom-product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   max-width: 100%;
 }
 
@@ -35,15 +36,14 @@
   position: relative;
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 8px;
-  background: #f5f5f5;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 0;
+  background: #f8f8f8;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .custom-grid-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
 }
 
 .custom-grid-item-image {
@@ -56,11 +56,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .custom-grid-item:hover .product-image {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .product-image-placeholder {
@@ -69,40 +69,41 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e0e0e0;
-  color: #666;
-  font-size: 14px;
+  background: #e8e8e8;
+  color: #999;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* Trigger Button */
+/* Trigger Button - White Circle with Plus */
 .custom-grid-trigger {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  width: 56px;
-  height: 56px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid #1a1a1a;
+  bottom: 16px;
+  right: 16px;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  opacity: 0;
+  opacity: 1;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.custom-grid-item:hover .custom-grid-trigger {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .custom-grid-trigger:hover {
   background: #1a1a1a;
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .custom-grid-trigger:hover .trigger-icon {
@@ -112,6 +113,8 @@
 .trigger-icon {
   color: #1a1a1a;
   transition: color 0.3s ease;
+  width: 18px;
+  height: 18px;
 }
 
 /* Responsive Design */
@@ -123,13 +126,18 @@
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .custom-product-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .custom-grid-title {
+    font-size: 36px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .custom-product-grid-section {
-    padding: 40px 16px;
+    padding: 48px 16px;
   }
 
   .custom-grid-title {
@@ -139,13 +147,19 @@
 
   .custom-product-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 12px;
   }
 
   .custom-grid-trigger {
-    opacity: 1;
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
+    bottom: 12px;
+    right: 12px;
+  }
+  
+  .trigger-icon {
+    width: 16px;
+    height: 16px;
   }
 }
 

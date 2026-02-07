@@ -1,207 +1,259 @@
 /* ============================================
-   Custom Banner Section Styles
+   Custom Banner Section - Pixel Perfect Figma Design
    ============================================ */
 
-.custom-banner-section {
-  position: relative;
+/* Reset & Base */
+.custom-banner {
   width: 100%;
-  min-height: 500px;
+  background: #f5efe6;
+}
+
+/* ============================================
+   Header Bar - Top Navigation Style
+   ============================================ */
+.custom-banner__header {
+  background: #f5efe6;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 16px 24px;
+}
+
+.custom-banner__header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: linear-gradient(180deg, #f5e6d3 0%, #e8d4ba 100%);
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.custom-banner-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 60px 20px;
-  z-index: 2;
+.custom-banner__logo {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  padding: 10px 20px;
+  border: 2px solid #1a1a1a;
+  background: #fff;
+  white-space: nowrap;
 }
 
-.custom-banner-content {
-  max-width: 600px;
-  margin: 0 auto;
+.custom-banner__tagline {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: #1a1a1a;
+  margin: 0;
   text-align: center;
+  flex: 1;
 }
 
-/* Background Image */
-.custom-banner-background {
+.custom-banner__header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #c5d4a0;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.custom-banner__header-cta:hover {
+  background: #b5c490;
+  transform: translateX(4px);
+}
+
+.custom-banner__header-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.custom-banner__header-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.custom-banner__hero {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  background: #f5efe6;
+  overflow: hidden;
+}
+
+.custom-banner__bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  opacity: 0.3;
 }
 
-.custom-banner-background img {
+.custom-banner__bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0.15;
 }
 
-/* Top Label */
-.custom-banner-label {
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #2c2c2c;
-  margin-bottom: 16px;
-  padding: 8px 20px;
-  border: 2px solid #2c2c2c;
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.8);
+.custom-banner__content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Heading */
-.custom-banner-heading {
+.custom-banner__heading {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 64px;
+  font-size: 72px;
   font-weight: 400;
+  font-style: italic;
   line-height: 1.1;
   color: #1a1a1a;
-  margin: 0 0 20px 0;
+  margin: 0 0 24px 0;
   letter-spacing: -1px;
 }
 
-/* Description */
-.custom-banner-description {
+.custom-banner__description {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #4a4a4a;
-  margin-bottom: 40px;
+  margin: 0 0 32px 0;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Buttons */
-.custom-banner-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.custom-banner-button {
+.custom-banner__cta {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 32px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 14px;
+  gap: 10px;
+  padding: 16px 36px;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 0;
+  border: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
 
-/* Primary Button */
-.custom-banner-button--primary {
-  background: #1a1a1a;
-  color: #ffffff;
-  border: 2px solid #1a1a1a;
-}
-
-.custom-banner-button--primary::before {
+.custom-banner__cta::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: #333333;
-  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #333;
+  transition: left 0.4s ease;
   z-index: -1;
 }
 
-.custom-banner-button--primary:hover::before {
+.custom-banner__cta:hover::before {
   left: 0;
 }
 
-.custom-banner-button--primary:hover {
+.custom-banner__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Secondary Button */
-.custom-banner-button--secondary {
-  background: transparent;
-  color: #1a1a1a;
-  border: 2px solid #1a1a1a;
-}
-
-.custom-banner-button--secondary .button-arrow {
-  transition: transform 0.3s ease;
-}
-
-.custom-banner-button--secondary:hover {
-  background: #1a1a1a;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.custom-banner-button--secondary:hover .button-arrow {
+.custom-banner__cta:hover svg {
   transform: translateX(4px);
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .custom-banner-section {
-    min-height: 400px;
-  }
+.custom-banner__cta svg {
+  transition: transform 0.3s ease;
+}
 
-  .custom-banner-wrapper {
-    padding: 40px 16px;
-  }
+.custom-banner__bottom-text {
+  position: relative;
+  z-index: 2;
+  margin-top: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #666;
+}
 
-  .custom-banner-heading {
-    font-size: 42px;
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media screen and (max-width: 900px) {
+  .custom-banner__header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
-  .custom-banner-description {
-    font-size: 14px;
-  }
-
-  .custom-banner-buttons {
-    flex-direction: column;
+  
+  .custom-banner__tagline {
+    order: 3;
     width: 100%;
+    margin-top: 12px;
   }
-
-  .custom-banner-button {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .custom-banner-label {
-    font-size: 12px;
-    letter-spacing: 2px;
+  
+  .custom-banner__heading {
+    font-size: 48px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .custom-banner-heading {
+@media screen and (max-width: 600px) {
+  .custom-banner__header {
+    padding: 12px 16px;
+  }
+  
+  .custom-banner__logo {
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+  
+  .custom-banner__header-cta {
+    padding: 10px 16px;
+    font-size: 11px;
+  }
+  
+  .custom-banner__hero {
+    min-height: 400px;
+    padding: 40px 20px;
+  }
+  
+  .custom-banner__heading {
     font-size: 36px;
   }
-
-  .custom-banner-button {
-    padding: 12px 24px;
-    font-size: 13px;
+  
+  .custom-banner__description {
+    font-size: 14px;
+  }
+  
+  .custom-banner__cta {
+    padding: 14px 28px;
+    font-size: 12px;
+  }
+  
+  .custom-banner__bottom-text {
+    font-size: 9px;
   }
 }
