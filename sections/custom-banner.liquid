@@ -1,0 +1,139 @@
+{{ 'custom-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-banner-section color-{{ section.settings.color_scheme }}">
+  <div class="custom-banner-wrapper">
+    <div class="custom-banner-content">
+      {% if section.settings.top_label != blank %}
+        <div class="custom-banner-label">
+          {{ section.settings.top_label }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="custom-banner-heading">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="custom-banner-description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      <div class="custom-banner-buttons">
+        {% if section.settings.button_1_text != blank %}
+          <a 
+            href="{{ section.settings.button_1_link }}" 
+            class="custom-banner-button custom-banner-button--primary"
+          >
+            {{ section.settings.button_1_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_2_text != blank %}
+          <a 
+            href="{{ section.settings.button_2_link }}" 
+            class="custom-banner-button custom-banner-button--secondary"
+          >
+            {{ section.settings.button_2_text }}
+            <svg class="button-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if section.settings.background_image != blank %}
+      <div class="custom-banner-background">
+        {{
+          section.settings.background_image
+          | image_url: width: 1920
+          | image_tag: loading: 'lazy', alt: section.settings.background_image.alt
+        }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "class": "section-custom-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "top_label",
+      "label": "Top Label",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        {
+          "value": "scheme-1",
+          "label": "Scheme 1"
+        },
+        {
+          "value": "scheme-2",
+          "label": "Scheme 2"
+        },
+        {
+          "value": "scheme-3",
+          "label": "Scheme 3"
+        }
+      ],
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}

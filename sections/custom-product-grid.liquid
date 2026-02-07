@@ -1,0 +1,172 @@
+{{ 'custom-grid.css' | asset_url | stylesheet_tag }}
+{{ 'custom-popup.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-product-grid-section">
+  <div class="custom-grid-wrapper">
+    {% if section.settings.section_title != blank %}
+      <h2 class="custom-grid-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    <div class="custom-product-grid">
+      {% for block in section.blocks %}
+        {% if block.settings.product != blank %}
+          {% assign product = block.settings.product %}
+          <div class="custom-grid-item" data-block-id="{{ block.id }}">
+            <div class="custom-grid-item-image">
+              {% if product.featured_image %}
+                {{
+                  product.featured_image
+                  | image_url: width: 600
+                  | image_tag: loading: 'lazy', alt: product.title, class: 'product-image'
+                }}
+              {% else %}
+                <div class="product-image-placeholder">No image</div>
+              {% endif %}
+            </div>
+
+            <button 
+              class="custom-grid-trigger"
+              data-product-id="{{ product.id }}"
+              data-product-handle="{{ product.handle }}"
+              aria-label="View {{ product.title }}"
+            >
+              <svg class="trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Popup Modal -->
+<div class="custom-popup-overlay" id="productPopup" style="display: none;">
+  <div class="custom-popup-container">
+    <button class="custom-popup-close" aria-label="Close popup">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="custom-popup-content">
+      <div class="popup-product-image">
+        <img id="popupProductImage" src="" alt="" />
+      </div>
+
+      <div class="popup-product-info">
+        <h3 id="popupProductTitle" class="popup-title"></h3>
+        <div id="popupProductPrice" class="popup-price"></div>
+        <div id="popupProductDescription" class="popup-description"></div>
+
+        <form id="popupAddToCartForm" class="popup-form">
+          <div class="popup-variant-selector">
+            <label for="popupVariantSelect">Select Variant:</label>
+            <select id="popupVariantSelect" name="id" required>
+              <option value="">Choose an option</option>
+            </select>
+          </div>
+
+          <button type="submit" class="popup-add-to-cart-btn">
+            <span class="btn-text">Add to Cart</span>
+            <span class="btn-loading" style="display: none;">Adding...</span>
+          </button>
+        </form>
+
+        <div id="popupMessage" class="popup-message" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'custom-popup.js' | asset_url }}" defer></script>
+
+<script type="application/json" id="productData">
+  {
+    "products": [
+      {% for block in section.blocks %}
+        {% if block.settings.product != blank %}
+          {% assign product = block.settings.product %}
+          {
+            "id": {{ product.id | json }},
+            "handle": {{ product.handle | json }},
+            "title": {{ product.title | json }},
+            "description": {{ product.description | strip_html | truncatewords: 50 | json }},
+            "price": {{ product.price | money | json }},
+            "compare_at_price": {{ product.compare_at_price | money | json }},
+            "featured_image": {{ product.featured_image | image_url: width: 800 | json }},
+            "variants": [
+              {% for variant in product.variants %}
+                {
+                  "id": {{ variant.id | json }},
+                  "title": {{ variant.title | json }},
+                  "price": {{ variant.price | money | json }},
+                  "available": {{ variant.available | json }},
+                  "option1": {{ variant.option1 | json }},
+                  "option2": {{ variant.option2 | json }},
+                  "option3": {{ variant.option3 | json }}
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }{% unless forloop.last %},{% endunless %}
+        {% endif %}
+      {% endfor %}
+    ]
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "class": "section-custom-product-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Tisso vison in the wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Grid",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
