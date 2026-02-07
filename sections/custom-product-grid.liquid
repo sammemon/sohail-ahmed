@@ -1,7 +1,7 @@
 {{ 'custom-grid.css' | asset_url | stylesheet_tag }}
 {{ 'custom-popup.css' | asset_url | stylesheet_tag }}
 
-<div class="custom-product-grid-section">
+<div class="custom-product-grid-section" id="product-grid">
   <div class="custom-grid-wrapper">
     {% if section.settings.section_title != blank %}
       <h2 class="custom-grid-title">{{ section.settings.section_title }}</h2>
