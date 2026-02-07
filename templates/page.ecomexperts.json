@@ -12,11 +12,14 @@
     "custom_banner_section": {
       "type": "custom-banner",
       "settings": {
+        "top_label": "TISSO VISON",
         "tagline": "Find the ideal gift for your loved ones.",
         "header_button_text": "CHOOSE GIFT",
         "header_button_link": "#product-grid",
         "heading": "The Gift Guide",
         "description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones.",
+        "button_1_text": "SHOP NOW",
+        "button_1_link": "",
         "bottom_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 4X."
       }
     },
@@ -26,37 +29,37 @@
         "product_1": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "black-leather-bag"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "blue-silk-tuxedo"
           }
         },
         "product_3": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "chequered-red-shirt"
           }
         },
         "product_4": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "classic-leather-jacket"
           }
         },
         "product_5": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "classic-varsity-top"
           }
         },
         "product_6": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "dark-denim-top"
           }
         }
       },
