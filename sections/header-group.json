@@ -22,7 +22,7 @@
             "font": "var(--font-subheading--family)",
             "font_size": "1.25rem",
             "weight": "",
-            "letter_spacing": "normal",
+            "letter_spacing": "loose",
             "case": "none"
           },
           "blocks": {}
